@@ -1,4 +1,6 @@
 import { NextResponse } from "next/server";
+import { cookies } from "next/headers";
+import { getSessionToken } from "../../auth-config";
 
 export const dynamic = "force-dynamic";
 
@@ -16,6 +18,11 @@ async function supabaseSelect<T>(path: string): Promise<T[]> {
 
 export async function GET() {
   try {
+    const cookieStore = await cookies();
+    const sessionToken = getSessionToken();
+    if (!sessionToken || cookieStore.get("operations_session")?.value !== sessionToken) {
+      return NextResponse.json({ error: "Nicht angemeldet" }, { status: 401 });
+    }
     const goals = await supabaseSelect<GoalRow>("performance_goals?select=metric_code,metric_name,target_value,updated_at&active=eq.true&order=metric_name.asc&limit=1");
     const goal = goals[0];
     if (!goal) return NextResponse.json(null);

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { CalculatorIcon, ChevronDown, Clipboard, Euro, LogOut, Plus, Trash2, Users } from "lucide-react";
+import { CalculatorIcon, ChevronDown, Clipboard, Euro, Plus, Trash2, Users } from "lucide-react";
 
 type Staff = { id: number; hours: string };
 type Result = { staff:number; travelTime:number; mileage:number; travel:number; other:number; profit:number; total:number; externalStaff:number };
@@ -39,14 +39,7 @@ export function Calculator() {
     return()=>lifecycle.abort();
   },[]);
 
-  return <main className="app-shell">
-    <header className="app-header">
-      <div className="app-brand"><img className="header-logo" src="/debruyn-bildmarke.png" alt="De Bruyn Physiotherapie"/><div><span>DE BRUYN PHYSIOTHERAPIE</span><strong>DeBruyn Operations</strong></div></div>
-      <div className="profile"><div><strong>Melanie Franke</strong><span>Teamleitung Rezeption &amp; operative Koordination</span></div><a href="/api/logout" aria-label="Abmelden"><LogOut size={18}/></a></div>
-    </header>
-    <div className="workspace">
-      <aside className="side-nav"><p>WERKZEUGE</p><button className="active"><CalculatorIcon size={19}/>BGM-Kalkulation</button></aside>
-      <section className="content">
+  return <section className="content">
         <div className="page-heading"><div className="heading-icon"><CalculatorIcon size={25}/></div><div><p className="overline">KOSTENKALKULATION</p><h1>BGM-Veranstaltung</h1><span>Personal, Anfahrt und weitere Kosten kalkulieren.</span></div></div>
         <div className="calculator-grid">
           <section className="form-card">
@@ -71,9 +64,7 @@ export function Calculator() {
             </>}
           </aside>
         </div>
-      </section>
-    </div>
-  </main>;
+  </section>;
 }
 
 function Detail({title,open,toggle,children}:{title:string;open:boolean;toggle:()=>void;children:React.ReactNode}){return <div className="detail-group"><button onClick={toggle}><span>{title}</span><ChevronDown className={open?"rotate":""} size={18}/></button>{open&&<div className="details">{children}</div>}</div>}

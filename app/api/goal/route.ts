@@ -11,9 +11,9 @@ export async function GET() {
     if (!sessionToken || cookieStore.get("operations_session")?.value !== sessionToken) {
       return NextResponse.json({ error: "Nicht angemeldet" }, { status: 401 });
     }
-    const supabaseUrl = process.env.SUPABASE_URL;
+    const supabaseUrl = process.env.SUPABASE_URL || "https://hgqrushcvdkzdpfdywzv.supabase.co";
     const operationsToken = process.env.OPERATIONS_GOAL_API_TOKEN;
-    if (!supabaseUrl || !operationsToken) {
+    if (!operationsToken) {
       throw new Error("Ziel-Cockpit ist nicht konfiguriert");
     }
 

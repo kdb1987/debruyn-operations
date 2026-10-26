@@ -43,8 +43,8 @@ export function GoalCockpit() {
 
 function GoalGauge({ data }: { data: GoalData }) {
   const max = Math.max(data.dream, data.positive, data.minimum, 1);
-  const ratio = Math.min(data.current / max, 1.08);
-  const angle = -90 + ratio * 180;
+  const ratio = Math.min(data.current / max, 1);
+  const angle = -180 + ratio * 180;
   const achievement = data.positive ? Math.round(data.current / data.positive * 100) : 0;
   const status = data.current >= data.dream ? "Traumziel erreicht" : data.current >= data.positive ? "Positives Ziel erreicht" : data.current >= data.minimum ? "Minimalziel erreicht" : "Auf dem Weg zum Minimalziel";
 

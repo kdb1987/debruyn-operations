@@ -23,6 +23,7 @@ type Task = {
   description: string;
   dueDate: string | null;
   priority: "normal" | "hoch";
+  assigneesVisible: boolean;
   createdByName: string;
   createdAt: string;
   completedAt: string | null;
@@ -112,7 +113,7 @@ export function TasksCockpit() {
           </button>
         </div>
 
-        {task.assignees.length > 1 && <div className="task-assignees">
+        {task.assigneesVisible && task.assignees.length > 1 && <div className="task-assignees">
           {task.assignees.map(person => <span key={person.recipientKey} className={person.completedAt ? "done" : ""}>
             {person.completedAt ? <CheckCircle2 size={13}/> : <Circle size={13}/>} {person.displayName}
           </span>)}

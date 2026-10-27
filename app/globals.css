@@ -58,5 +58,5 @@
   .tasks-summary>div{width:100%}
   .tasks-summary button{flex:1}
   .task-card-head{flex-direction:column}
-  .task-complete,.task-reopen{width:100%;justify-content:center}
+  .task-complete,.task-reopen,.task-completion-toggle{width:100%;min-width:0;justify-content:center}
 }

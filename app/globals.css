@@ -43,6 +43,16 @@
 .task-comment-form button{width:34px;height:34px;display:grid;place-items:center;border:0;border-radius:8px;background:#00894d;color:#fff;cursor:pointer}
 .task-comment-form button:disabled,.task-complete:disabled,.task-reopen:disabled{opacity:.45;cursor:default}
 
+
+.task-completion-toggle{min-width:205px;display:flex;align-items:center;gap:9px;flex-shrink:0;padding:10px 12px;border:1px solid #35624a;border-radius:10px;background:#09170f;color:#b7cabe;cursor:pointer;user-select:none}
+.task-completion-toggle input{position:absolute;opacity:0;pointer-events:none}
+.task-completion-toggle>span{width:20px;height:20px;display:grid;place-items:center;flex:0 0 20px;border:2px solid #4a7560;border-radius:6px;color:#fff;background:#07130d}
+.task-completion-toggle strong{font-size:.78rem}
+.task-completion-toggle.checked{border-color:#3f8f64;background:#123d29;color:#e0f7e9}
+.task-completion-toggle.checked>span{border-color:#15975e;background:#15975e}
+.task-completion-toggle:has(input:focus-visible){outline:2px solid #70dda0;outline-offset:2px}
+.task-completion-toggle:has(input:disabled){opacity:.5;cursor:default}
+
 @media(max-width:700px){
   .tasks-summary{align-items:stretch;flex-wrap:wrap}
   .tasks-summary>div{width:100%}

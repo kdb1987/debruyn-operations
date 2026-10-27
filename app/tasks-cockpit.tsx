@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { CheckCircle2, Circle, ClipboardCheck, MessageSquare, RotateCcw, Send } from "lucide-react";
+import { CheckCircle2, Circle, ClipboardCheck, MessageSquare, Send } from "lucide-react";
 
 type Assignee = {
   recipientKey: string;
@@ -104,13 +104,16 @@ export function TasksCockpit() {
             <h2>{task.title}</h2>
             {task.description && <p>{task.description}</p>}
           </div>
-          <button
-            className={task.completedAt ? "task-reopen" : "task-complete"}
-            onClick={() => action(task.id, task.completedAt ? "reopen" : "complete")}
-            disabled={working.startsWith(task.id)}
-          >
-            {task.completedAt ? <><RotateCcw size={16}/> Wieder öffnen</> : <><CheckCircle2 size={17}/> Erledigt</>}
-          </button>
+          <label className={`task-completion-toggle ${task.completedAt ? "checked" : ""}`}>
+            <input
+              type="checkbox"
+              checked={Boolean(task.completedAt)}
+              onChange={() => action(task.id, task.completedAt ? "reopen" : "complete")}
+              disabled={working.startsWith(task.id)}
+            />
+            <span aria-hidden="true">{task.completedAt && <CheckCircle2 size={16}/>}</span>
+            <strong>{task.completedAt ? "Von mir erledigt" : "Als erledigt markieren"}</strong>
+          </label>
         </div>
 
         {task.assigneesVisible && task.assignees.length > 1 && <div className="task-assignees">
